@@ -8,6 +8,11 @@ terraform {
 
   required_version = ">= 1.5.0"
 }
+
+provider "aws" {
+  region = var.aws_region  # or directly specify "us-west-2"
+}
+
 module "ec2" {
   source                = "./ec2"
   ami_id                = var.ami_id
