@@ -29,7 +29,9 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: git clone 
-      run: git clone https://github.com/Nikethreddy21/terraform-ec2.git | cd ./terraform-ec2/ | ls -l
+      run: git clone https://github.com/Nikethreddy21/terraform-ec2.git 
+    - name: commands 
+      run: cd ./terraform-ec2 | ls-l
     - name: Terraform Init
       run: terraform init
     - name:  terraform validate
