@@ -1,7 +1,4 @@
-
-
 name: 'Terraform'
-
 on:
   push:
     branches: [ "master" ]
@@ -15,26 +12,26 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: DEV
-
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
-
     steps:
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+         with:
+         terraform_version: 1.5.7  
+        
+      - name: Terraform Init
+        run: terraform init
+      - name: terraform validate
+        run: terraform validate      
+      - name: Determine Environment Variables File
+        id: env-vars
+        run: ./environments/dev.tfvars
+      - name: Terraform Plan
+        run: terraform plan -var-file=environments/${{ env.tfvars_file }}
+     - name: Terraform apply
+        run: terraform apply -var-file="environments/dev.tfvars" -auto-approve
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: git clone 
-      run: git clone https://github.com/Nikethreddy21/terraform-ec2.git 
-    - name: commands 
-      run: cd ./terraform-ec2 | chmod 777 ./terraform-ec2/dev.tfvars
-    - name: Terraform Init
-      run: terraform init
-    - name:  terraform validate
-      run: terraform validate
-    - name: Terraform apply
-      run: terraform apply -var-file="./terraform-ec2/dev.tfvars" -auto-approve
