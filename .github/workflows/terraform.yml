@@ -28,10 +28,14 @@ jobs:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: git clone 
+      run: git clone https://github.com/Nikethreddy21/terraform-ec2.git
+    - name: run commands 
+      run: pwd
     - name: Terraform Init
       run: terraform init
     - name: run commands 
-      run: pwd | ls
-   # - name: Terraform Apply
-    #  run: terraform apply -var-file="environments/dev.tfvars" -auto-approve
+      run: pwd 
+    - name: Terraform Apply
+      run: terraform apply -var-file="environments/dev.tfvars" -auto-approve
 
