@@ -9,9 +9,10 @@ terraform {
   required_version = ">= 1.5.0"
 }
 
-provider "aws" {
- region = "us-east-1"
-}
+provider "aws" 
+  {
+   region = "us-east-1"
+  }
 
 module "ec2" {
   source                = "./ec2"
