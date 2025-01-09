@@ -33,5 +33,5 @@ jobs:
      # - name: Terraform Plan
      #   run: terraform plan -var-file=environments/${{ env.tfvars_file }}
       - name: Terraform apply
-        run: terraform apply -var-file="environments/dev.tfvars" -auto-approve
+        run: terraform apply -var-file="./environments/dev.tfvars" -auto-approve
 
