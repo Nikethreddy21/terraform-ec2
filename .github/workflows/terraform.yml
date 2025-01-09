@@ -31,7 +31,9 @@ jobs:
     - name: git clone 
       run: git clone https://github.com/Nikethreddy21/terraform-ec2.git
     - name: run commands 
-      run: pwd
+      run: cd ./runner/work/terraform-ec2/terraform-ec2/terraform-ec2/
+    - name: run commands 
+      run : ls -l ./runner/work/terraform-ec2/terraform-ec2/terraform-ec2/dev.tfvars  | chmod 644 ./runner/work/terraform-ec2/terraform-ec2/terraform-ec2/dev.tfvars
     - name: Terraform Init
       run: terraform init
     - name:  terraform validate
