@@ -34,8 +34,6 @@ jobs:
       run: pwd
     - name: Terraform Init
       run: terraform init
-    - name: run commands 
-      run: cd terraform-ec2 
     - name: Terraform Apply
-      run: terraform apply -var-file="*/environments/dev.tfvars" -auto-approve
+      run: terraform apply -var-file="terraform-ec2/environments/dev.tfvars" -auto-approve
 
