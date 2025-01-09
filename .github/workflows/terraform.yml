@@ -28,12 +28,16 @@ jobs:
       - name: terraform validate
         run: terraform validate      
       - name: Terraform Plan
-        run: terraform plan -var-file="./environments/dev.tfvars"
+        run: terraform plan -var-file="./environments/dev.tfvars" -out=plan.out
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
     
+      #- name: Terraform apply
+      #  run: terraform apply -var-file="./environments/dev.tfvars" -auto-approve
       - name: Terraform apply
-        run: terraform apply -var-file="./environments/dev.tfvars" -auto-approve
+        run: terraform apply -auto-approve plan.out
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+
 
