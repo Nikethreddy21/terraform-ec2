@@ -20,10 +20,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
-         with:
-         terraform_version: 1.5.7  
+        with:
+          terraform_version: 1.5.7 
         
-      - name: Terraform Init
+      - name: Terraform Init  
         run: terraform init
       - name: terraform validate
         run: terraform validate      
@@ -32,6 +32,6 @@ jobs:
         run: ./environments/dev.tfvars
       - name: Terraform Plan
         run: terraform plan -var-file=environments/${{ env.tfvars_file }}
-     - name: Terraform apply
+      - name: Terraform apply
         run: terraform apply -var-file="environments/dev.tfvars" -auto-approve
 
