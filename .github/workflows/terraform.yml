@@ -29,12 +29,10 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: git clone 
-      run: git clone https://github.com/Nikethreddy21/terraform-ec2.git
-    - name: run commands 
-      run : ls -l ./terraform-ec2/terraform-ec2/dev.tfvars  | chmod 644 ./terraform-ec2/terraform-ec2/dev.tfvars
+      run: git clone https://github.com/Nikethreddy21/terraform-ec2.git | cd ./terraform-ec2/ | ls -l
     - name: Terraform Init
       run: terraform init
     - name:  terraform validate
       run: terraform validate
     - name: Terraform apply
-      run: terraform apply -var-file="./runner/work/terraform-ec2/terraform-ec2/terraform-ec2/dev.tfvars" -auto-approve
+      run: terraform apply -var-file="./runner/work/terraform-ec2/terraform-ec2/dev.tfvars" -auto-approve
