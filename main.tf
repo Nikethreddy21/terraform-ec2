@@ -1,6 +1,7 @@
 terraform {
   required_providers {
     aws = {
+      region = var.aws_region
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
@@ -8,11 +9,6 @@ terraform {
 
   required_version = ">= 1.5.0"
 }
-
-provider "aws" {
-  region = var.aws_region
-}
-
 module "ec2" {
   source                = "./ec2"
   ami_id                = var.ami_id
