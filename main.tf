@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region = var.aws_region # Use the region variable
+  region = var.aws_region
 }
 
 module "ec2" {
@@ -20,10 +20,9 @@ module "ec2" {
   instance_count        = var.instance_count
   vpc_security_group_ids = var.vpc_security_group_ids
   key_pair_name          = var.key_pair_name
-  root_volume_size       = var.root_volume_size # Pass root volume size
-  extra_volume_size      = var.extra_volume_size # Pass additional volume size
+  root_volume_size       = var.root_volume_size
+  extra_volume_size      = var.extra_volume_size
   tag_name               = var.tag_name
   subnet_id              = var.subnet_id
-  user_data              = file("./scripts/nginx.sh")   # Read the script file
-
+  user_data              = file("./scripts/nginx.sh")
 }
