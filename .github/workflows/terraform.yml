@@ -35,7 +35,7 @@ jobs:
     - name: Terraform Init
       run: terraform init
     - name: run commands 
-      run: pwd 
+      run: ls 
     - name: Terraform Apply
-      run: terraform apply -var-file="./environments/dev.tfvars" -auto-approve
+      run: terraform apply -var-file="*/environments/dev.tfvars" -auto-approve
 
