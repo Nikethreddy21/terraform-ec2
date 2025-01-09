@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region = var.aws_region  # or directly specify "us-west-2"
+ region = "us-east-1"
 }
 
 module "ec2" {
