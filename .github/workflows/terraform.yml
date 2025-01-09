@@ -32,10 +32,10 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} 
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}    
-      #- name: Terraform apply
-      #  run: terraform apply -var-file="./environments/dev.tfvars" -auto-approve
       - name: Terraform apply
-        run: terraform apply -auto-approve plan.out
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        run: terraform apply -var-file="./environments/dev.tfvars" -auto-approve
+      #- name: Terraform apply
+       # run: terraform apply -auto-approve plan.out
+        #if: github.ref == 'refs/heads/master' && github.event_name == 'push'
 
 
