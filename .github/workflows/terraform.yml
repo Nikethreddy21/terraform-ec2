@@ -1,0 +1,39 @@
+
+
+name: 'Terraform'
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: DEV
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: git clone 
+      run: git clone https://github.com/Nikethreddy21/terraform-ec2.git
+    - name: run commands 
+      run: pwd
+    - name: Terraform Init
+      run: terraform init
+    - name: Terraform Apply
+      run: terraform apply -var-file="./home/runner/work/terraform-ec2/terraform-ec2/environments/dev.tfvars" -auto-approve
+
